@@ -1,4 +1,11 @@
+DOTFILES=bash_aliases inputrc
+
+.PHONY: install
+
 install:
-	cp ~/.bash_aliases ~/.bash_aliases.bak
-	rm -f ~/.bash_aliases
-	ln -s $(CURDIR)/bash_aliases ~/.bash_aliases
+	@for dotfile in $(DOTFILES) ; do \
+		cp ~/.$$dotfile ~/.$$dotfile.bak ; \
+		rm -f ~/.$$dotfile ; \
+		ln -s $(CURDIR)/$$dotfile ~/.$$dotfile ; \
+		ls -la ~/.$$dotfile ; \
+	done
