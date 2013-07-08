@@ -1,4 +1,4 @@
-DOTFILES=bash_aliases inputrc
+DOTFILES=bash_aliases inputrc bashrc profile
 
 .PHONY: install
 
