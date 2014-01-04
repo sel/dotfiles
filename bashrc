@@ -8,6 +8,9 @@ export EDITOR='nano'
 # disable paging for single screenfulls (-FX)
 export LESS='-RFX'
 
+# Don't leave man pages on the screen
+export MANPAGER='less -+F -+X'
+
 # Support for syntax highlighting in less (via .lessfilter/pygments)
 if which pygmentize > /dev/null; then export LESSOPEN='|~/.lessfilter %s'; fi
 
