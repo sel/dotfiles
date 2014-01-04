@@ -1,0 +1,11 @@
+[user]
+	name = Steve
+	email = github.sel@gmail.com
+[credential]
+	helper = osxkeychain
+[color]
+	status = auto
+	diff = auto
+	branch = auto
+[core]
+	excludesfile = /Users/sel/.gitignore_global
