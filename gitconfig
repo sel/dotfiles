@@ -10,3 +10,5 @@
 [core]
 	excludesfile = /Users/sel/.gitignore_global
 	autocrlf = input
+[push]
+	default = simple
