@@ -1,3 +1,6 @@
+#!/bin/bash
+# (shebang is unnecessary here: present only to enable syntax highlighting)
+
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -20,4 +23,3 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-_byobu_sourced=1 . /usr/bin/byobu-launch
