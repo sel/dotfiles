@@ -10,7 +10,7 @@
 	excludesfile = /Users/sel/.gitignore_global
 	autocrlf = input
 [push]
-	default = simple
+#	default = simple
 [alias]
 	l = "!git log-hist"
 	log-hist = "!git log-pretty --graph"
