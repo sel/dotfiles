@@ -1,78 +1,130 @@
-#!/bin/bash
-# (shebang is unnecessary here: present only to enable syntax highlighting)
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
-# set default text editor to be nano
-export EDITOR='nano'
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
-# Make less support ANSI colour codes (-R) and
-# disable paging for single screenfulls (-FX)
-export LESS='-RFX'
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
 
-# Don't leave man pages on the screen
-export MANPAGER='less -+F -+X'
+# append to the history file, don't overwrite it
+shopt -s histappend
 
-# Support for syntax highlighting in less (via .lessfilter/pygments)
-if which pygmentize > /dev/null; then export LESSOPEN='|~/.lessfilter %s'; fi
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
 
-# LESS man page colors (makes Man pages more readable).
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
-# set locale for python
-export LANG="en_GB.UTF-8"
-export LC_COLLATE="en_GB.UTF-8"
-export LC_CTYPE="en_GB.UTF-8"
-export LC_MESSAGES="en_GB.UTF-8"
-export LC_MONETARY="en_GB.UTF-8"
-export LC_NUMERIC="en_GB.UTF-8"
-export LC_TIME="en_GB.UTF-8"
-export LC_ALL="en_GB.UTF-8"
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
 
-# Bash completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# install aliases
-[[ -s ~/.bash_aliases ]] && source ~/.bash_aliases
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
 
-# install custom bash prompt if exists
-[[ -s ~/.bash_prompt ]] && source ~/.bash_prompt
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+force_color_prompt=yes
 
-# rbenv config
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
 
-# virtualenvwrapper
-export WORKON_HOME=~/.virtualenvs
-mkdir -p $WORKON_HOME
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases - moved to .bash_aliases
+#alias ll='ls -lF'
+#alias la='ls -lA'
+#alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# start ssh-agent (FIXME: prevent many instances running)
+#eval `ssh-agent` >/dev/null
+
+# less colour support via pigments
+export LESS='-R'
+export LESSOPEN='|~/.lessfilter %s'
+
+# setup virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/dev
 source /usr/local/bin/virtualenvwrapper.sh
 
-# android path extensions
-export PATH=$PATH:/Users/sel/Development/adt-bundle-mac-x86_64-20131030/sdk/platform-tools
-
-# Go development
-export GOPATH=$HOME/Development/go
-
-# Move /usr/local/bin to start of PATH
-export PATH=/usr/local/bin:$PATH
-
-# Remove duplicates from PATH
-set -f         # Turn off globbing, to allow unprotected variable substitutions
-IFS=:
-old_PATH=$PATH:; PATH=
-while [ -n "$old_PATH" ]; do
-  x=${old_PATH%%:*}       # the first remaining entry
-  case $PATH: in
-    *:${x}:*) :;;         # already there
-    *) PATH=$PATH:$x;;    # not there yet
-  esac
-  old_PATH=${old_PATH#*:}
-done
-PATH=${PATH#:}
-set +f; unset IFS old_PATH x
+# setup rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

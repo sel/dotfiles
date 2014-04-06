@@ -1,9 +1,8 @@
 [user]
 	name = Steve
 	email = github.sel@gmail.com
-[credential]
-	helper = osxkeychain
 [color]
+	ui = true
 	status = auto
 	diff = auto
 	branch = auto
@@ -12,3 +11,7 @@
 	autocrlf = input
 [push]
 	default = simple
+[alias]
+	l = "!git log-hist"
+	log-hist = "!git log-pretty --graph"
+	log-pretty = "log --pretty='format:%C(blue)%h%C(red)%d%C(yellow) %s %C(green)%an%Creset, %ar'"
