@@ -54,10 +54,21 @@ mkdir -p $WORKON_HOME
 source /usr/local/bin/virtualenvwrapper.sh
 
 # android path extensions
-export PATH=$PATH:/Users/sel/Development/adt-bundle-mac-x86_64-20131030/sdk/platform-tools
+export ANDROID_HOME=/Users/sel/Development/adt-bundle-mac-x86_64-20131030/sdk
+if [ -d $ANDROID_HOME ]; then
+    export PATH=$PATH:$ANDROID_HOME/tools
+    export PATH=$PATH:$ANDROID_HOME/platform-tools
+    export PATH=$PATH:$ANDROID_HOME/build-tools/android-4.4
+fi
+
+# android ndk
+export NDKROOT=/Users/sel/Development/android-ndk-r9d/
 
 # Go development
 export GOPATH=$HOME/Development/go
+
+# PIP download cache
+export PIP_DOWNLOAD_CACHE=~/.pipcache
 
 # Move /usr/local/bin to start of PATH
 export PATH=/usr/local/bin:$PATH

@@ -12,3 +12,7 @@
 	autocrlf = input
 [push]
 	default = simple
+[grep]
+	lineNumber = true
+[alias]
+	g = grep --break --heading --line-number

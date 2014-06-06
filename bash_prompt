@@ -1,5 +1,9 @@
 #!/bin/bash
 # (shebang is unnecessary here: present only to enable syntax highlighting)
+#
+# Based on:
+# https://github.com/necolas/dotfiles/blob/master/shell/bash_prompt
+
 
 prompt_git() {
     local s=""
