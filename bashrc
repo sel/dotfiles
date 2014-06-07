@@ -1,8 +1,9 @@
 #!/bin/bash
 # (shebang is unnecessary here: present only to enable syntax highlighting)
 
-# set default text editor to be nano
-export EDITOR='nano'
+# set default text editor to be vim
+export EDITOR='vim'
+alias nano='vim'
 
 # Make less support ANSI colour codes (-R) and
 # disable paging for single screenfulls (-FX)
@@ -64,16 +65,16 @@ fi
 # android ndk
 export NDKROOT=/Users/sel/Development/android-ndk-r9d/
 
-# Go development
+# go development
 export GOPATH=$HOME/Development/go
 
-# PIP download cache
+# use a pip download cache
 export PIP_DOWNLOAD_CACHE=~/.pipcache
 
-# Move /usr/local/bin to start of PATH
+# move /usr/local/bin to start of PATH
 export PATH=/usr/local/bin:$PATH
 
-# Remove duplicates from PATH
+# remove duplicates from PATH
 set -f         # Turn off globbing, to allow unprotected variable substitutions
 IFS=:
 old_PATH=$PATH:; PATH=

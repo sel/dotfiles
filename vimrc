@@ -112,9 +112,30 @@ set foldlevel=99
 "Always number lines
 set number
 
+"Disable backups
+set nobackup
+
 "Map the leader key (an alternative to the command key)
 let mapleader = "-"
 
 "Quick access to .vimrc file
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+"Highlight trailing whitespace as an error message.
+"(the highlight must have a background color set, as spaces are invisible :)
+"Inspect available highlight colours with:
+"    :so $VIMRUNTIME/syntax/hitest.vim
+"http://vim.wikia.com/wiki/VimTip396#Highlighting_with_the_match_command
+match ErrorMsg /\s\+$/
+
+"Trim trailing whitespace
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+"Automatically Trim trailing whitespace on save
+autocmd FileType python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
