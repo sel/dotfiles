@@ -139,3 +139,5 @@ endfun
 "Automatically Trim trailing whitespace on save
 autocmd FileType python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
+"Highlight long lines
+let &colorcolumn=join(range(80,999),",")
