@@ -1,4 +1,4 @@
-DOTFILES=bash_aliases inputrc bashrc profile
+DOTFILES=bash_aliases inputrc bashrc profile dircolors
 
 .PHONY: install
 
