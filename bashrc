@@ -104,5 +104,5 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Android toolchain
-export PATH="$HOME/Development/Andoid/adt-bundle-linux-x86_64-20130522/sdk/tools:$PATH"
-export PATH="$HOME/Development/Andoid/adt-bundle-linux-x86_64-20130522/sdk/platform-tools:$PATH"
+export PATH="$HOME/Development/Andoid/adt-bundle-linux-x86_64-20140702/sdk/tools:$PATH"
+export PATH="$HOME/Development/Andoid/adt-bundle-linux-x86_64-20140702/sdk/platform-tools:$PATH"
