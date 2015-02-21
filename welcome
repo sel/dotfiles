@@ -1,10 +1,15 @@
 #!/bin/bash
 
 if type -P figlet >/dev/null ; then
-  fonts=( bell block cricket cyberlarge cybermedium lean ogre shadow slant stampatello standard starwars )
-  let "idx = ${RANDOM} % ${#fonts[@]}"
-  font="${fonts[${idx}]}"
-  echo -e "$(tput setaf 136)$(figlet -f ${font}  -c -w $( tput cols ) $( hostname -s ) )"
+  hostname=$( hostname|cut -f 1 -d'.' )
+  domain=$( hostname|cut -f 2- -d'.' )
+  banner=$( paste -d" " \
+              <(figlet -f slant $( echo "${hostname}"|cut -f 1 -d'-' )|sed 's!^![1;34m!g') \
+              <(figlet $( echo "${hostname}"|cut -f 2 -d'-')|sed 's!^![1;36m!g'))
+  bannerlen=$(echo "${banner}"|awk '{print length}'|sort -nr|head -1)
+  bannerlen=$((${bannerlen} - 3))
+  echo "${banner}"
+  printf "%${bannerlen}s\n" "[38;5;166m.${domain}"
   exit
 fi
 
