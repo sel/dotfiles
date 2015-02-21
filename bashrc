@@ -2,8 +2,8 @@
 # (shebang is unnecessary here: present only to enable syntax highlighting)
 
 # set default text editor to be vim
-export EDITOR='vim'
-alias nano='vim'
+#export EDITOR='vim'
+#alias nano='vim'
 
 # Make less support ANSI colour codes (-R) and
 # disable paging for single screenfulls (-FX)
@@ -71,8 +71,11 @@ export GOPATH=$HOME/Development/go
 # use a pip download cache
 export PIP_DOWNLOAD_CACHE=~/.pipcache
 
-# move /usr/local/bin to start of PATH
-export PATH=/usr/local/bin:$PATH
+# (homebrew): move /usr/local/bin and /usr/local/sbin to the start of PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+# (jenv): Java environment switcher a la rbenv
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # remove duplicates from PATH
 set -f         # Turn off globbing, to allow unprotected variable substitutions
@@ -88,3 +91,6 @@ while [ -n "$old_PATH" ]; do
 done
 PATH=${PATH#:}
 set +f; unset IFS old_PATH x
+
+# Display welcome message
+[[ -s ~/.welcome ]] && cat ~/.welcome
