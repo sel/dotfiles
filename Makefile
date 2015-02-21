@@ -1,4 +1,4 @@
-DOTFILES = bash_aliases bash_profile bash_prompt bashrc gitconfig gitignore_global inputrc lessfilter nanorc vimrc zshrc
+DOTFILES = bash_aliases bash_profile bash_prompt bashrc gitconfig gitignore_global inputrc lessfilter nanorc welcome vimrc zshrc
 SOURCEDIR = $(shell pwd)
 TARGETDIR = ~
 
