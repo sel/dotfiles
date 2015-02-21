@@ -93,4 +93,4 @@ PATH=${PATH#:}
 set +f; unset IFS old_PATH x
 
 # Display welcome message
-[[ -s ~/.welcome ]] && cat ~/.welcome
+[[ -s ~/.welcome ]] && ~/.welcome
