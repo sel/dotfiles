@@ -1,12 +1,14 @@
 #!/bin/bash
 
 if type -P figlet >/dev/null ; then
+  fg1='36'
+  fg2='37'
   hostname="$( hostname )"
   domain="$( dnsdomainname )"
   [[ -n "${domain}" ]] && domain=".${domain}"
   banner=$( paste -d" " \
-              <(figlet -f slant $( echo "${hostname}"|cut -f 1 -d'-' )|sed 's!^![1;34m!g') \
-              <(figlet $( echo "${hostname}"|cut -f 2 -d'-')|sed 's!^![1;36m!g'))
+              <(figlet -f slant $( echo "${hostname}"|cut -f 1 -d'-' )|sed "s!^![1;${fg1}m!g") \
+              <(figlet $( echo "${hostname}"|cut -f 2 -d'-')|sed "s!^![1;${fg2}m!g"))
   bannerlen=$(echo "${banner}"|awk '{print length}'|sort -nr|head -1)
   bannerlen=$((${bannerlen} - 3))
   echo "${banner}"
