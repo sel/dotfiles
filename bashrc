@@ -106,3 +106,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # Android toolchain
 export PATH="$HOME/Development/Andoid/adt-bundle-linux-x86_64-20140702/sdk/tools:$PATH"
 export PATH="$HOME/Development/Andoid/adt-bundle-linux-x86_64-20140702/sdk/platform-tools:$PATH"
+
+# Display welcome message
+[[ -s ~/.welcome ]] && ~/.welcome

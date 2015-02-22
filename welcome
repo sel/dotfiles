@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if type -P figlet >/dev/null ; then
+  hostname="$( hostname )"
+  domain="$( dnsdomainname )"
+  [[ -n "${domain}" ]] && domain=".${domain}"
+  banner=$( paste -d" " \
+              <(figlet -f slant $( echo "${hostname}"|cut -f 1 -d'-' )|sed 's!^![1;34m!g') \
+              <(figlet $( echo "${hostname}"|cut -f 2 -d'-')|sed 's!^![1;36m!g'))
+  bannerlen=$(echo "${banner}"|awk '{print length}'|sort -nr|head -1)
+  bannerlen=$((${bannerlen} - 3))
+  echo "${banner}"
+  printf "%${bannerlen}s\n" "[38;5;166m${domain}"
+  exit
+fi
+
+cat <<'EOF'
+[1;37m#[38;5;166m                __[1;37m     [1;33m     __          __   __
+[1;37m#[38;5;166m     ________  / /[1;37m     [1;33m____/ /__  _____/ /__/ /_____  ____
+[1;37m#[38;5;166m    / ___/ _ \/ /[1;37m_____[1;33m/ __  / _ \/ ___/ //_/ __/ __ \/ __ \
+[1;37m#[38;5;166m   (__  )  __/ /[1;37m_____[1;33m/ /_/ /  __(__  ) ,< / /_/ /_/ / /_/ /
+[1;37m#[38;5;166m  /____/\___/_/[1;37m     [1;33m \__,_/\___/____/_/|_|\__/\____/ .___/
+[1;37m#[38;5;166m              [1;37m     [1;33m                               /_/
+EOF
