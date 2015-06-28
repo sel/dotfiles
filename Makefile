@@ -1,8 +1,10 @@
 DOTFILES=bash_aliases \
+         bash_node \
          bashrc \
          byobu.profile.tmux.sel \
          dircolors \
          inputrc \
+         npmrc \
          profile \
          welcome \
 
