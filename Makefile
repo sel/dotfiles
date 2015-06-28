@@ -1,4 +1,4 @@
-DOTFILES=bash_aliases inputrc bashrc profile dircolors welcome
+DOTFILES=bash_aliases inputrc bashrc profile dircolors welcome byobu.profile.tmux.sel
 
 .PHONY: install
 
