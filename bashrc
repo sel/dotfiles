@@ -100,6 +100,11 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Development
 source $HOME/.local/bin/virtualenvwrapper.sh
 
+# Include node/npm setup
+if [ -f ~/.bash_node ]; then
+    . ~/.bash_node
+fi
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
