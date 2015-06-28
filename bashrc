@@ -107,5 +107,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$HOME/Development/Andoid/adt-bundle-linux-x86_64-20140702/sdk/tools:$PATH"
 export PATH="$HOME/Development/Andoid/adt-bundle-linux-x86_64-20140702/sdk/platform-tools:$PATH"
 
+# Remap CAPS LOCK to ESC
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
 # Display welcome message
 [[ -s ~/.welcome ]] && ~/.welcome
