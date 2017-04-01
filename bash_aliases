@@ -3,3 +3,4 @@
 
 alias ll='ls -lAsh'
 alias hf='history | grep -i $*'
+alias g=git

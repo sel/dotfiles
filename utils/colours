@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for i in 0 1 ; do
+  for j in 31 32 33 34 35 36 37 ; do
+    echo -e "\\033[${i};${j}m${i};${j}m"
+  done
+done

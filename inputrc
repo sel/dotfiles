@@ -1,5 +1,8 @@
 $include /etc/inputrc
 
+# reinstate hash in the shell
+#"\e3": "#"
+
 # improved history search
 "\e[A": history-search-backward
 "\e[B": history-search-forward

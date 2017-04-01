@@ -1,6 +1,6 @@
 [user]
 	name = Steve
-	email = github.sel@gmail.com
+	email = sel@users.noreply.github.com
 [credential]
 	helper = osxkeychain
 [color]
@@ -15,7 +15,15 @@
 [grep]
 	lineNumber = true
 [alias]
-	g = grep --break --heading --line-number
+	a = add
+	c = commit
+	ca = commit --amend
+	can = commit --amend --no-edit
+        co = checkout
 	dc = diff --cached
+	g = grep --break --heading --line-number
+	lg = log -n 15 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+	lgn = log -n 15 --no-merges --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+	prb = pull --rebase
+	s = show
 	st = status
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit

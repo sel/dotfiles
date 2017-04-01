@@ -77,6 +77,9 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # (jenv): Java environment switcher a la rbenv
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
+# set-up todo
+[[ -s ~/.bash_todo ]] && source ~/.bash_todo
+
 # remove duplicates from PATH
 set -f         # Turn off globbing, to allow unprotected variable substitutions
 IFS=:
@@ -91,6 +94,9 @@ while [ -n "$old_PATH" ]; do
 done
 PATH=${PATH#:}
 set +f; unset IFS old_PATH x
+
+# include user additions
+[[ -s ~/.bash_user ]] && source ~/.bash_user
 
 # Display welcome message
 [[ -s ~/.welcome ]] && ~/.welcome

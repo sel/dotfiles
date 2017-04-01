@@ -1,3 +1,4 @@
 #!/bin/sh
-pygmentize -g "$1"
+pygmentize -f 256 -O style=solarizeddark -g "$1"
+#pygmentize -O style=solarizeddark -g "$1"
 exit 0

@@ -3,7 +3,10 @@
 
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
-export HISTCONTROL=erasedups
+
+export HISTCONTROL=ignoredups:erasedups
+export HISTFILESIZE=100000
+export HISTSIZE=100000
 
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;31'
